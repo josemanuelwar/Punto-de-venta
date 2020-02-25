@@ -1,0 +1,153 @@
+.titulo
+{
+	text-align: center;
+}
+
+.login
+{
+	margin: auto;
+	width: 50%;
+	max-width: 900px;
+	background: #f3f3f3;
+	padding: 30px;
+	border: 1px solid rgba(0,0,0,0.2);
+}
+.titulo2
+{
+	text-align: center;
+	margin-bottom: 20px;
+	color: rgba(0,0,0,0.5);
+}
+.caja
+{
+	display: block;
+	padding: 10px;
+	width: 90%;
+	margin: 30px,0;
+	font-size: 20px;
+}
+.boton
+{
+	font-size: 20px;
+	width: 100%;
+	background: #CCEEFF;
+	color: black;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.boton1
+{
+	float: right;
+	font-size: 16px;
+	background: #CCEEFF;
+	color: black;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.menu
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 200px;
+	background-color:#f1f1f1;
+	height: auto;
+	float: left;
+}
+.men .al
+{
+	display: block;
+	color: #000;
+	padding: 8px 16px;
+}
+
+.men .al:hover {
+  background-color: #555;
+  color: white;
+}
+
+.registro
+{
+
+	margin: auto;
+	width: 50%;
+	max-width: 4000px;
+	background: #f3f3f3;
+	padding: 30px;
+	border: 1px solid rgba(0,0,0,0.2);
+}
+
+.alert{
+	display: block;
+	color: white;
+	width: 50%;
+	padding: 8px 16px;
+	margin-left: auto;
+	margin-right: auto;
+	background: red;
+	text-align: center;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Container for flexboxes */
+.set {
+  display: -webkit-flex;
+  display: flex;
+}
+
+article {
+  -webkit-flex: 3;
+  -ms-flex: 3;
+  flex: 3;
+  background-color: #f1f1f1;
+  padding: 10px;
+}
+
+/* Style the footer */
+footer {
+  background-color: #777;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+/* Responsive layout - makes the menu and the content (inside the section) sit on top of each other instead of next to each other */
+@media (max-width: 500px) {
+  .set {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+.titulo2{
+	text-align: center;
+}
+
+.titulo3{
+	color: black;
+	text-align: center;
+}
+
+.lave{
+	float: left;
+
+}
+
+.la{
+	margin-left:  20px;
+}

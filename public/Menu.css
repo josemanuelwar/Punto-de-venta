@@ -1,0 +1,86 @@
+﻿body {
+    background-color: white;
+}
+
+.cabecera {
+    width: 100%;
+    height: 71px;
+    border-bottom: 1px solid black;
+}
+
+#logohead {
+    position: fixed;
+    left: 0;
+}
+
+img.logo {
+    
+    vertical-align: middle;
+    float: left;
+}
+
+#iconoMenu {
+    position: fixed;
+    left: 200px;
+    float: left;
+}
+
+.tituloPrincipal {
+    margin-left: 20%;
+}
+
+/* The side navigation menu */
+.vertical-menu {
+    height: 100%;
+    width: 0px;
+    position: fixed;
+    z-index: 1;
+    top: auto;
+    left: 0;
+    background-color: #003B5C;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+    .vertical-menu a {
+        background-color: #003B5C; /* Grey background color #33529f*/
+        color: #0094ff; /* Black text color */
+        display: block; /* Make the links appear below each other */
+        padding: 12px; /* Add some padding */
+        text-decoration: none; /* Remove underline from links */
+        transition: 0.3s;
+    }
+
+        .vertical-menu a:hover {
+            background-color: red; /* Dark grey background on mouse-over */
+        }
+
+    .vertical-menu .closebtn {
+        position: absolute;
+        top: 0;
+        right: 0px;
+        font-size: 36px;
+    }
+
+// .vertical-menu a.active {
+    // background-color: #4CAF50; /* Add a green color to the "active/current" link */
+    // color: white;
+    // //
+}
+
+#main {
+    
+    width: 100%;
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+.container {
+    width: 100%;
+}
+
+#iconoMenu {
+    font-size: 30px;
+    cursor: pointer;
+    padding: 10px;
+}
