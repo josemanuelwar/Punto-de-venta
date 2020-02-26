@@ -114,4 +114,17 @@ class Cortesdeldia extends CI_Model {
 		$this->db->where('id_alumno',$id_alumno);
 		return $this->db->update('alumnos',$data);
 	}
+
+	public function datosdelrsivo($value)
+	{
+		$has=$this->db->select("*")
+						->from('pagosalumnos,alumnos,colegituras')
+						->where('foliodepagos',$value)
+						->where('iddealumnos_fk=id_alumno')
+						->where('foliodepagos=folio_fk_id')
+						->get()
+						->result_array();
+		return $has;
+	}
+
 }

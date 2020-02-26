@@ -65,27 +65,21 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-
           <div class="top-right links">
-          		
-                <?php if ($this->session->userdata('itm')['Rol'] == 1): ?>
-                    <a href="<?php echo base_url('RegistroAlumnos') ?>">Inicio</a>
-
-                <?php else: ?>
-                <a href="<?php echo base_url().'Login/index' ?>">Inicio</a>
-          		<a href="<?=base_url().'Login/login'?>">Login</a>
+                <a href="<?php echo base_url().'RegistroAlumnos' ?>">Inicio</a>
+                <?php if ($this->session->userdata('itm')!=null): ?>
+                <?php else:?>
+                <a href="<?=base_url().'Login/login'?>">Login</a>    
+                <?php endif ?>
+                <?php if ($this->session->userdata('itm')['Rol'] == 2): ?>
           		<a href="<?=base_url(),'Login/Registrodeusuarios'?>">Register</a>
                 <?php endif ?>
           </div>
-
             <div class="content">
-
                 <div class="title m-b-md">
                     <br>Bienvenido <br>
-        
                     <img src="<?php echo base_url('public/img/logo.png')?>">
                 </div>
-
             </div>
         </div>
     </body>

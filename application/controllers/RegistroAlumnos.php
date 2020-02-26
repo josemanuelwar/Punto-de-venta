@@ -287,7 +287,6 @@ class RegistroAlumnos extends CI_Controller {
 				}
 			}
 		}
-
 		redirect('RegistroAlumnos/pagosdeAlumnos');
     }
 
@@ -300,7 +299,7 @@ class RegistroAlumnos extends CI_Controller {
         } else {
         	$adelantar=$this->input->post('Adelantar');
         	
-        	$alumnos=$this->Alumno->MostrarAlumnos($id_alumno);
+			$alumnos=$this->Alumno->MostrarAlumnos($id_alumno);
         	$vrificador=$this->Alumno->verificasion($id_alumno);
         	
         	$cole=(integer)$alumnos['colegiatura_alumno']*$adelantar;
@@ -332,6 +331,7 @@ class RegistroAlumnos extends CI_Controller {
 				}
 			}
 			$this->session->set_flashdata('ok',"Se han guardado corectamente su datos");
+			$resutado=self::imprimirtickets($folio);
 		}
         }
         redirect('RegistroAlumnos/pagosdeAlumnos');
@@ -432,49 +432,68 @@ class RegistroAlumnos extends CI_Controller {
 		}
 	}
 
-	public function imprimirtickets()
+	public function imprimirtickets($id_folios)
 	{
-		$nombre_impresora = "POS"; 
+		$folios=$this->Cortesdeldia->datosdelrsivo($id_folios);
+        //$colegiatura=$this->Cortesdeldia->colegiaturas($id_folios);
+		var_dump($folios);
+		die;
+		/**
+        **imprimiendo ticket de compras de productos
+        **
+        **/
+        $nombre_impresora = "imprciontickes"; 
+        $connector = new WindowsPrintConnector($nombre_impresora);
+        $printer = new Printer($connector);
+        $printer->setJustification(Printer::JUSTIFY_CENTER);
+            /*imagen del la institucion*/
+                // try{
+                //       $logo = EscposImage::load("img/logo1.png", false);
+                //        $printer->bitImage($logo);
+                // }catch(Exception $e){/*No hacemos nada si hay error*/}
+        $printer->setJustification(Printer::JUSTIFY_CENTER);
+        $printer->text("\n"."Instituto Tecnico de Mexico" . "\n");
+        $printer->text("Direccion:" . "\n");
+        $printer->text("Boulevard carlos camacho espíritu" . "\n");
+        $printer->text("Tel: 2222800926" . "\n");
+        $printer->text("Responsable del Cobro \n");
+        $printer->text($this->session->userdata('itm')['Nombre']."\n");
+        date_default_timezone_set("America/Mexico_City");
+        $printer->text(date("Y-m-d H:i:s") . "\n");
+        $printer->text("N° Folio \n");
+        $printer->text($id_folios);
+        $printer->text("\n");
+        $printer->text("-----------------------------" . "\n");
+        $printer->setJustification(Printer::JUSTIFY_LEFT);
+        $printer->text("Matricula \n");
+        $printer->text($folios[0]["id_alumno"]."\n");
+        $printer->text("Nombre de Alumno \n");
+        $printer->text($folios[0]["nombre_alumno"]."\n");
+        $printer->text("-----------------------------" . "\n");
+        $printer->setJustification(Printer::JUSTIFY_LEFT);
+        if (($folios[0]["incripcionpago"] != null) or ($folios[0]["incripcionpago"] != 0)) {
+            $printer->text("Inscripción".$folios[0]["incripcionpago"]."\n");
+        }else{
+			foreach ($folios as $key => $value) {
+				$printer->text("Numero de semana ".$value["semanaspagadas"]. " $".$folios[0]["colegiatura_alumno"]."\n");
+			}
 
-         $connector = new WindowsPrintConnector($nombre_impresora);
-         $printer = new Printer($connector);
-         echo 1;
-   
-         $printer->setJustification(Printer::JUSTIFY_CENTER);
-
-
-         $printer->text("\n"."Instituto Tecnico de Mexico" . "\n");
-         $printer->text("Direccion: Orquídeas #151" . "\n");
-         $printer->text("Tel: 454664544" . "\n");
-         #La fecha también
-         date_default_timezone_set("America/Mexico_City");
-         $printer->text(date("Y-m-d H:i:s") . "\n");
-         $printer->text("-----------------------------" . "\n");
-         $printer->setJustification(Printer::JUSTIFY_LEFT);
-         $printer->text("colegiatura.\n");
-         $printer->text("nombre del Responsable");
-         //$printer->text($nombre->Responsable."\n");
-         $printer->text("-----------------------------"."\n");
-
-         $printer->setJustification(Printer::JUSTIFY_LEFT);
-          
-          $printer->text( "Consepto de pago   \n");
-          //$printer->text($nombre->Concepto."\n");
-            
-            $printer->text("-----------------------------"."\n");
-            $printer->setJustification(Printer::JUSTIFY_RIGHT);
-            $printer->text("TOTAL:\n");
-            //$printer->text($nombre->pago."\n");
-
-            $printer->setJustification(Printer::JUSTIFY_CENTER);
-            $printer->text("Muchas gracias\n");
-
-            $printer->feed(3);
-
-            $printer->cut();
-
-            $printer->pulse();
-
-            $printer->close();
+		}
+        $printer->text("-----------------------------"."\n");
+        $printer->setJustification(Printer::JUSTIFY_RIGHT);
+        $printer->text("TOTAL:\n");
+        $printer->text("$".$folios[0]["totalpago"]."\n");
+        $printer->text("\n \n");
+        $printer->setJustification(Printer::JUSTIFY_CENTER);
+        $printer->text("-----------------------------"."\n");
+        $printer->text("Muchas gracias\n");
+        $printer->text("Siempre y de forma inmediata le deben entregar su comprobante de pago \n");
+        $printer->text("y debe coincidir con el concepto de pago realizado por usted \n");
+        $printer->text("Si no se lo entregan o el concepto de pago es distinto, favor de reportarlo al 2222 800 926 \n");
+        $printer->text("y se le bonificara Gratis una colegiatura");
+        $printer->feed(3);
+        $printer->cut();
+        $printer->close();
 	}
+
 }

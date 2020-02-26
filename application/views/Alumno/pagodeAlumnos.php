@@ -119,6 +119,8 @@
 				    <input class="form-control" style="background: red; color: pink ;" type="text" name="Incripcion" id="Incripcion" readonly="readonly" value="pagado">
 				    <h5><label>Colegiatura</label></h5>
 				    <input class="form-control" style="background: red; color: pink ;" type="text" name="Coleguiatura" id="Coleguiatura" readonly="readonly" value="Numero de Semana N°<?=$semanas['ultimasemanadepago']?>">
+            <h5><label>Feche de pago</label></h5>
+            <input class="form-control" type="text" name=""  readonly="readonly"value="<?=$semanas['fechadepago']?>">
 				    <?php 
 				    		$input_Adelantar=array(
                                 'name' => 'Adelantar',
@@ -133,7 +135,7 @@
 				    echo form_label("Numeros de semanas a pagar");
           	echo form_input($input_Adelantar);
 ?>
-				     <button type="button" class="btn btn-success" onclick="myFunction();">Adelantar</button>
+				     <button type="button" class="btn btn-success" onclick="myFunction();">Pagar</button>
 				     <button type="button" id="Formul" class="btn btn-primary" onclick="formularia();"style="margin:5px; float:
 right">Condonacion</button>
              <?php echo form_close(); ?>
