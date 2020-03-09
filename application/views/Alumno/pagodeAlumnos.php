@@ -3,7 +3,7 @@
         <h1 class="titulopag">
             <b>
  				<header>
-					<h1 style="color: black">Pagos de Colegituras e Inscripcion</h1>
+					<h1 style="color: black">Pagos de Colegiaturas e Inscripcion</h1>
 				</header>
             </b>
         </h1>

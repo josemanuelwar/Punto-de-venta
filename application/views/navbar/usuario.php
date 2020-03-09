@@ -1,3 +1,4 @@
+<script src='<?=base_url()?>public/js/a076d05399.js'></script>
 <div class="wrapper">
       <!---------------HEADER------------------------------------------------------------------------------------->
       <header class="main-header">
@@ -15,7 +16,7 @@
           <nav class="navbar navbar-static-top" role="navigation">
               <span class="header-wrapper" style="font-size:20pt;color: black;line-height:70px">
                   <span>
-                  Sistema de Cobranza del Instituto Tecnologico de Mexico
+                  Sistema de Cobranza del Instituto Técnico de Mexico
                   </span>
               </span>
           </nav>
@@ -43,20 +44,48 @@
                     
                       <li>
                           <a title="" href="<?php echo base_url('Login') ?>">
-                              <i class="fa fa-user fa-6" aria-hidden="true"></i>
+                              <i class="fas fa-home" aria-hidden="true"></i>
                                     <span>
-                                      Home
+                                      Inicio
                                     </span>         
                            </a>
+                      </li>
+                      <?php if ($this->session->userdata('itm')['Rol'] == 2): ?>
+                      <li>
+          		            <a href="<?=base_url(),'Login/Registrodeusuarios'?>">
+                              <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                    <span>
+                                        Registro de personal
+                                    </span>
+                            </a>
                       </li>
                       <li>
+          		            <a href="<?=base_url(),'Cursos/listadeusuarios'?>">
+                              <i class="fa fa-user-plus" aria-hidden="true"></i>
+                                    <span>
+                                        lista de Personal
+                                    </span>
+                            </a>
+                      </li>
+                    <?php endif ?>
+                      <li>
                           <a title="" href="<?php echo base_url('RegistroAlumnos') ?>">
-                              <i class="fa fa-user fa-6" aria-hidden="true"></i>
+                              <i class="fa fa-user-plus" aria-hidden="true"></i>
                                     <span>
                                       Registro de Alumnos
-                                    </span>         
+                                    </span>
                            </a>
                       </li>
+                      <?php if ($this->session->userdata('itm')['Rol'] == 2): ?>
+                      <li>
+                            <a href="<?= base_url('Cursos') ?>">
+                                <i class="fas fa-plus" aria-hidden="true"></i>
+                                    <span>
+                                    Agregar cursos
+                                    </span>
+                            </a>
+                      </li>
+                      <?php endif ?>
                       <li>
                           <a title="" href="<?php echo base_url('RegistroAlumnos/Actulizar') ?>">
                               <i class="fa fa-user fa-6" aria-hidden="true"></i>
@@ -68,39 +97,39 @@
                       </li>
                       <li>
                           <a title="" href="<?php echo base_url('RegistroAlumnos/pagosdeAlumnos') ?>">
-                              <i class="fa fa-user fa-6" aria-hidden="true"></i>
+                              <i class="fas fa-dollar-sign" aria-hidden="true"></i>
                                     <span>
-                                     Colegituras e Inscripcion
-                                    </span>         
+                                     Colegiaturas e Inscripcion
+                                    </span>
                            </a>
                       </li>
                       <li>
                           <a title="" href="<?php echo base_url('Cortes') ?>">
-                              <i class="fa fa-user fa-6" aria-hidden="true"></i>
+                              <i class="fas fa-money-check" aria-hidden="true"></i>
                                     <span>
                                      Cortes
-                                    </span>         
+                                    </span>
                            </a>
                       </li>
                       <li>
                           <a title="" href="<?php echo base_url('Cortes/historialcrediticia') ?>">
-                              <i class="fa fa-user fa-6" aria-hidden="true"></i>
+                              <i class="fas fa-money-check" aria-hidden="true"></i>
                                     <span>
                                      Historial de cobros
-                                    </span>         
+                                    </span>
                            </a>
                       </li>
                       <li>
                           <a title="" href="<?php echo base_url('Productos') ?>">
-                              <i class="fa fa-user fa-6" aria-hidden="true"></i>
+                              <i class="fab fa-steam-square" aria-hidden="true"></i>
                                     <span>
                                      Registro de productos
-                                    </span>         
+                                    </span>
                            </a>
                       </li>
                       <li>
                         <a title="" href="<?= base_url('Login/cerrarsecion')?>">
-                            <i class="fa fa-sign-out fa-6" aria-hidden="true"></i>
+                            <i class="fa fa-remove" aria-hidden="true"></i>
                             <span>
                                 Salir
                             </span>

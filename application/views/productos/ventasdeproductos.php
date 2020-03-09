@@ -13,8 +13,6 @@
         </h1>
     </section>
     <section class="container-fluid">
-        <p>&nbsp;</p>
-
         <div class="col-sm-12">
 
 <?php if($this->session->flashdata('error')): ?>

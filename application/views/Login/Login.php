@@ -89,7 +89,7 @@ echo form_input($input_USUARIO_EMAIL);
 echo form_label('Contaseña');
 echo form_password($input_USUARIO_PASSWORD);
 echo "<br>";
-echo form_submit('submit', 'Inicio de secion','class=btn btn-default');
+echo form_submit('submit', 'Inicio de sesión','class=btn btn-default');
 echo form_close();
 ?>
 </div>

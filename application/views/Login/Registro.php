@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>
-		Registro de usuario
+		Registro de Personal
 	</title>
 </head>
 <body>
@@ -11,7 +11,7 @@
         <h1 class="titulopag">
             <b>
  				<header>
-					<h1 style="color: black">Registro de usuarios</h1>
+					<h1 style="color: black">Registro de Presonal</h1>
 				</header>
             </b>
         </h1>

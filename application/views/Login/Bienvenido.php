@@ -69,10 +69,7 @@
                 <a href="<?php echo base_url().'RegistroAlumnos' ?>">Inicio</a>
                 <?php if ($this->session->userdata('itm')!=null): ?>
                 <?php else:?>
-                <a href="<?=base_url().'Login/login'?>">Login</a>    
-                <?php endif ?>
-                <?php if ($this->session->userdata('itm')['Rol'] == 2): ?>
-          		<a href="<?=base_url(),'Login/Registrodeusuarios'?>">Register</a>
+                <a href="<?=base_url().'Login/login'?>">Login</a>
                 <?php endif ?>
           </div>
             <div class="content">
