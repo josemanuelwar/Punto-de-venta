@@ -264,9 +264,9 @@ CREATE TABLE IF NOT EXISTS `colegituras` (
   PRIMARY KEY (`id_colegituras`),
   KEY `FK__pagosalumnos` (`folio_fk_id`),
   CONSTRAINT `FK__pagosalumnos` FOREIGN KEY (`folio_fk_id`) REFERENCES `pagosalumnos` (`foliodepagos`)
-) ENGINE=InnoDB AUTO_INCREMENT=446 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=454 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla intitutodemexico.colegituras: ~441 rows (aproximadamente)
+-- Volcando datos para la tabla intitutodemexico.colegituras: ~453 rows (aproximadamente)
 /*!40000 ALTER TABLE `colegituras` DISABLE KEYS */;
 INSERT INTO `colegituras` (`id_colegituras`, `folio_fk_id`, `semanaspagadas`, `eliminarcolegituras`) VALUES
 	(1, 1379, 1, 0),
@@ -713,8 +713,34 @@ INSERT INTO `colegituras` (`id_colegituras`, `folio_fk_id`, `semanaspagadas`, `e
 	(442, 1820, 9, 0),
 	(443, 1820, 10, 0),
 	(444, 1821, 4, 0),
-	(445, 1821, 5, 0);
+	(445, 1821, 5, 0),
+	(446, 1822, 11, 0),
+	(447, 1822, 12, 0),
+	(448, 1823, 13, 0),
+	(449, 1823, 14, 0),
+	(450, 1824, 15, 0),
+	(451, 1824, 16, 0),
+	(452, 1825, 17, 0),
+	(453, 1825, 18, 0);
 /*!40000 ALTER TABLE `colegituras` ENABLE KEYS */;
+
+-- Volcando estructura para tabla intitutodemexico.cursos
+CREATE TABLE IF NOT EXISTS `cursos` (
+  `ID_CURSO` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `NOMBRE_CURSO` varchar(100) DEFAULT NULL,
+  `FECHEDECRACIONCURSO` date DEFAULT NULL,
+  `ELIMINAR_CURSO` int(2) unsigned DEFAULT '1',
+  KEY `Índice 1` (`ID_CURSO`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+-- Volcando datos para la tabla intitutodemexico.cursos: ~4 rows (aproximadamente)
+/*!40000 ALTER TABLE `cursos` DISABLE KEYS */;
+INSERT INTO `cursos` (`ID_CURSO`, `NOMBRE_CURSO`, `FECHEDECRACIONCURSO`, `ELIMINAR_CURSO`) VALUES
+	(1, 'Curso de verano', '2020-03-02', 0),
+	(2, 'ingles', '2020-03-02', 1),
+	(3, 'Curso de verano', '2020-03-02', 1),
+	(4, 'Curso de verano', '2020-03-02', 1);
+/*!40000 ALTER TABLE `cursos` ENABLE KEYS */;
 
 -- Volcando estructura para tabla intitutodemexico.pagosalumnos
 CREATE TABLE IF NOT EXISTS `pagosalumnos` (
@@ -735,9 +761,9 @@ CREATE TABLE IF NOT EXISTS `pagosalumnos` (
   KEY `FK__ALUMNOS` (`iddealumnos_fk`),
   CONSTRAINT `FK__ALUMNOS` FOREIGN KEY (`iddealumnos_fk`) REFERENCES `alumnos` (`id_alumno`),
   CONSTRAINT `FK__Personal_institutional` FOREIGN KEY (`idpersonadepago_fk`) REFERENCES `personal_institutional` (`PERSONAL_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1822 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1826 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla intitutodemexico.pagosalumnos: ~441 rows (aproximadamente)
+-- Volcando datos para la tabla intitutodemexico.pagosalumnos: ~447 rows (aproximadamente)
 /*!40000 ALTER TABLE `pagosalumnos` DISABLE KEYS */;
 INSERT INTO `pagosalumnos` (`foliodepagos`, `idpersonadepago_fk`, `iddealumnos_fk`, `incripcionpago`, `colegiaturapago`, `totalpago`, `fechadepago`, `semandepago`, `ultimasemanadepago`, `Eliminarpagos`, `pago_año`, `Descripciondecondonacion`) VALUES
 	(1379, 2, 164, 0, 139, 139, '2020-01-02', 1, 1, 0, '2020', NULL),
@@ -1182,7 +1208,11 @@ INSERT INTO `pagosalumnos` (`foliodepagos`, `idpersonadepago_fk`, `iddealumnos_f
 	(1818, 2, 190, NULL, 290, 290, '2020-02-24', 9, 8, 0, '2020', NULL),
 	(1819, 2, 2, NULL, 129, 129, '2020-02-24', 9, 8, 0, '2020', NULL),
 	(1820, 2, 190, NULL, 580, 580, '2020-02-24', 9, 10, 0, '2020', NULL),
-	(1821, 2, 187, NULL, 560, 560, '2020-02-24', 9, 5, 0, '2020', NULL);
+	(1821, 2, 187, NULL, 560, 560, '2020-02-24', 9, 5, 0, '2020', NULL),
+	(1822, 2, 190, NULL, 580, 580, '2020-02-26', 9, 12, 0, '2020', NULL),
+	(1823, 2, 190, NULL, 580, 580, '2020-02-26', 9, 14, 0, '2020', NULL),
+	(1824, 2, 190, NULL, 580, 580, '2020-02-26', 9, 16, 0, '2020', NULL),
+	(1825, 2, 190, NULL, 580, 580, '2020-02-26', 9, 18, 0, '2020', NULL);
 /*!40000 ALTER TABLE `pagosalumnos` ENABLE KEYS */;
 
 -- Volcando estructura para tabla intitutodemexico.personal_institutional
@@ -1192,14 +1222,15 @@ CREATE TABLE IF NOT EXISTS `personal_institutional` (
   `CORREO_PERSONA` varchar(80) NOT NULL,
   `CONTRASENA_PERSONA` varchar(200) NOT NULL,
   `PERSONAL_Rol` int(2) NOT NULL,
+  `PERSONAL_ELIMINAR` int(2) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`PERSONAL_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla intitutodemexico.personal_institutional: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `personal_institutional` DISABLE KEYS */;
-INSERT INTO `personal_institutional` (`PERSONAL_ID`, `NOMBRE_PERSONA`, `CORREO_PERSONA`, `CONTRASENA_PERSONA`, `PERSONAL_Rol`) VALUES
-	(1, 'manuel', 'josemanuelwar@hotmail.es', '$2y$12$M6jWuj626sEyULFf5h4Bw.e/Gl/iItvEixJVS/7/xL147rMGjPhI2', 1),
-	(2, 'admin', 'admin@gmail.com', '$2y$12$S/Uj6vbQO5z5xaxIvT.56OWoonAylIkR/I1P2eeO4359g4qEqvqj6', 2);
+INSERT INTO `personal_institutional` (`PERSONAL_ID`, `NOMBRE_PERSONA`, `CORREO_PERSONA`, `CONTRASENA_PERSONA`, `PERSONAL_Rol`, `PERSONAL_ELIMINAR`) VALUES
+	(1, 'MANUEL JOSE', 'josemanuelwar@hotmail.es', '$2a$08$RxwOUjZnjo1zMZ3UNfkzAODRdqBvU76eIEGIaHr1DvV8un53AmaJe', 1, 1),
+	(2, 'admin', 'admin@gmail.com', '$2y$12$S/Uj6vbQO5z5xaxIvT.56OWoonAylIkR/I1P2eeO4359g4qEqvqj6', 2, 1);
 /*!40000 ALTER TABLE `personal_institutional` ENABLE KEYS */;
 
 -- Volcando estructura para tabla intitutodemexico.productos
