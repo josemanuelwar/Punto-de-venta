@@ -17,20 +17,20 @@ class RegistroAlumnos extends CI_Controller {
       	$this->load->model('Personal');
       	$this->load->model('Alumno');
         $this->load->model('Cortesdeldia');
-      	$this->load->library('form_validation');
+		$this->load->library('form_validation');
+		$this->load->model('Curso');
       	$this->load->database();
       	date_default_timezone_set('America/Mexico_City');
       	}else{
         redirect('Login/Login');
     	}
-    	
      }
 
      public function index(){
-     	
+     	$data['cursos']=$this->Curso->Cursoget();
      	$this->load->view('common/boostrap');
      	$this->load->view('navbar/usuario');
-     	$this->load->view('Alumno/AltaAlumno');
+     	$this->load->view('Alumno/AltaAlumno',$data);
      }
      public function RegistraAlumnos(){
 
@@ -82,9 +82,8 @@ class RegistroAlumnos extends CI_Controller {
         		$this->session->set_flashdata('error',"ocurrio un erro contacta el administrador o intentelo mas tarde");
         	}
         	redirect('RegistroAlumnos');
-        }
-
-     }
+		}
+	}
 
      public function Actulizar(){
      	$this->load->view('common/boostrap');
@@ -99,7 +98,8 @@ class RegistroAlumnos extends CI_Controller {
             redirect('RegistroAlumnos/Actulizar');
         } else {
         	$Actulizar['matricula']=$this->input->post('Matricula');
-        	$Actulizar['alumno']=$this->Alumno->MostrarAlumnos($this->input->post('Matricula'));
+			$Actulizar['alumno']=$this->Alumno->MostrarAlumnos($this->input->post('Matricula'));
+			$Actulizar['cursos']=$this->Curso->Cursoget();
         	if ($Actulizar != null) {
 		        $this->load->view('common/boostrap');
 		     	$this->load->view('navbar/usuario');

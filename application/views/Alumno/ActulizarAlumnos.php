@@ -205,7 +205,17 @@ echo form_input($input_USUARIO_Direccion);
 echo form_label('Telefono');
 echo form_input($input_USUARIO_Telefono);
 echo form_label('Cursos');
-echo form_input($input_USUARIO_Curso);
+?>
+<select name="Cursos" id="Cursos" class=form-control>
+<?php foreach ($cursos as $key => $value):?>
+    <?php if($alumno['curso_alumno']==$value['NOMBRE_CURSO']): ?>
+<option value="<?=$value['NOMBRE_CURSO']?>" select|><?=$value['NOMBRE_CURSO']?></option>
+<?php else:?>
+  <option value="<?=$value['NOMBRE_CURSO']?>" select|><?=$value['NOMBRE_CURSO']?></option>
+<?php endif ?>
+<?php endforeach ?>
+</select>
+<?php
 echo form_label('Horario y dia');
 echo form_input($input_USUARIO_Horario);
 echo form_label('Fecha de Inicio');

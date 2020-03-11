@@ -128,14 +128,14 @@
                                 'maxlength'=>'125',
                                 'class' => 'form-control',
                                 'required' => true,
-                                'placeholder'=>"1", 
+                                'placeholder'=>"1",
 
                               );
 				    echo form_open(htmlspecialchars('RegistroAlumnos/adelantarcolegitura').'/'.base64_encode($alumno['id_alumno']), array('method' => 'POST', 'id' => 'myForm'));
 				    echo form_label("Numeros de semanas a pagar");
           	echo form_input($input_Adelantar);
 ?>
-				     <button type="button" class="btn btn-success" onclick="myFunction();">Pagar</button>
+				     <button type="button" class="btn btn-success" onclick="myFunction();">Cobrar</button>
 				     <button type="button" id="Formul" class="btn btn-primary" onclick="formularia();"style="margin:5px; float:
 right">Condonacion</button>
              <?php echo form_close(); ?>

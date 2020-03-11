@@ -161,21 +161,6 @@ $input_USUARIO_Inscripción= array(
                                  'placeholder'=>"500",
                             );
 
-$options = array(
-        'Curso de verano'   => 'Curso de verano',
-        'Autocad'           => 'Autocad',
-        'Esp.Diseño Grafico'=> 'Esp.Diseño Grafico',
-        'Esp.Asitente de Negocios con informatica'=> 'Esp.Asitente de Negocios con informatica',
-        'Dip.Robotica'     => 'Dip.Robotica',
-        'Esp.Robotica'     => 'Esp.Robotica',
-        'Curso Infantil'   => 'Curso Infantil',
-        'Curso de Matematicas' => 'Curso de Matematicas',
-        'Esp. Ingles'           => 'Esp. Ingles',
-        'Taekwondo'           => 'Taekwondo',
-        'Curso Basico'           => 'Curso Basico',
-        'Otro Curso'           => 'Otro Curso',
-);
-
 echo form_open(htmlspecialchars('RegistroAlumnos/RegistraAlumnos'), array('method' => 'POST'));
 echo form_label('Nombre');
 echo form_input($input_USUARIO_USERNAME);
@@ -188,8 +173,13 @@ echo form_input($input_USUARIO_Direccion);
 echo form_label('Telefono');
 echo form_input($input_USUARIO_Telefono);
 echo form_label('Cursos');
-
-echo form_dropdown('Cursos', $options, 'large','class=form-control');
+?>
+<select name="Cursos" id="Cursos" class=form-control>
+<?php foreach ($cursos as $key => $value):?>
+<option value="<?=$value['NOMBRE_CURSO']?>"><?=$value['NOMBRE_CURSO']?></option>
+<?php endforeach ?>
+</select>
+<?php
 echo form_label('Horario y dia');
 echo form_input($input_USUARIO_Horario);
 echo form_label('Fecha de Inicio');

@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Cortes extends CI_Controller {
 	function __construct(){
-		parent::__construct();	
+		parent::__construct();
 		if (($this->session->userdata('itm')['Rol'] == 1) or ($this->session->userdata('itm')['Rol'] == 2)) {
 		header( 'X-Content-Type-Options: nosniff' );
 	  	header( 'X-Frame-Options: SAMEORIGIN' );
@@ -22,18 +22,18 @@ class Cortes extends CI_Controller {
 
 
 	public function index(){
-	 	$Corte['cortes']=$this->Cortesdeldia->cortedia(date('y-m-d'));
-		$Corte['Total']=$this->Cortesdeldia->sumadeingresos(date('y-m-d')); 
-	 	$Corte['fecha']=date('y-m-d');
-	 	$this->load->view('common/boostrap');
-     	$this->load->view('navbar/usuario');
-     	$this->load->view('Cortes/IngresoporColeguituras',$Corte);
+			$Corte['cortes']=$this->Cortesdeldia->cortedia(date('y-m-d'));
+			$Corte['Total']=$this->Cortesdeldia->sumadeingresos(date('y-m-d')); 
+			$Corte['fecha']=date('y-m-d');
+			$this->load->view('common/boostrap');
+			$this->load->view('navbar/usuario');
+			$this->load->view('Cortes/IngresoporColeguituras',$Corte);
 	}
 
 	public function cortefecha(){
-	 	$this->form_validation->set_rules('fecha', 'fecha', 'required|trim|xss_clean');
-	 	if ($this->form_validation->run() == false) {
-           $this->session->set_flashdata('error',"Todos los campos son requeridos");
+		$this->form_validation->set_rules('fecha', 'fecha', 'required|trim|xss_clean');
+		if ($this->form_validation->run() == false) {
+		$this->session->set_flashdata('error',"Todos los campos son requeridos");
             redirect('Cortes');
         } else {
 			$Corte['cortes']=$this->Cortesdeldia->cortedia($this->input->post('fecha'));
@@ -84,18 +84,12 @@ class Cortes extends CI_Controller {
 	}
 
 	public function historialcrediticia(){
-		
-
 		$this->load->view('common/boostrap');
-	    
 		if ($this->input->post('Matricula')==null) {
 			$this->load->view('navbar/usuario');
-		    $this->load->view('Cortes/historialcrediticia');
-			
+			$this->load->view('Cortes/historialcrediticia');
 		}else{
-			
 			$histori['hitoria']=$this->Cortesdeldia->historial($this->input->post('Matricula'));
-			
 			$this->load->view('navbar/usuario');
 			$this->load->view('common/boostrap');
 			$this->load->view('Cortes/historialcrediticia',$histori);
