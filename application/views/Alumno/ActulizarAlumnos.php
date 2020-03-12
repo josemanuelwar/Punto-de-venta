@@ -208,10 +208,10 @@ echo form_label('Cursos');
 ?>
 <select name="Cursos" id="Cursos" class=form-control>
 <?php foreach ($cursos as $key => $value):?>
-    <?php if($alumno['curso_alumno']==$value['NOMBRE_CURSO']): ?>
-<option value="<?=$value['NOMBRE_CURSO']?>" select|><?=$value['NOMBRE_CURSO']?></option>
+    <?php if(strcasecmp ($alumno['curso_alumno'],$value['NOMBRE_CURSO']) === 0): ?>
+<option value="<?=$value['NOMBRE_CURSO']?>" selected><?=$value['NOMBRE_CURSO']?></option>
 <?php else:?>
-  <option value="<?=$value['NOMBRE_CURSO']?>" select|><?=$value['NOMBRE_CURSO']?></option>
+  <option value="<?=$value['NOMBRE_CURSO']?>"><?=$value['NOMBRE_CURSO']?></option>
 <?php endif ?>
 <?php endforeach ?>
 </select>

@@ -58,8 +58,8 @@
                   <?php $n="";?>
             <?php endif ?>
                 <a href="<?= base_url('RegistroAlumnos/generarexelfecha/').$f.'/'.$n?>" class="btn btn-success"  >Exportar Exel por Fecha</a>
-               
               <?php endif ?>
+              <a href="#" class="btn btn-success"> Imprimir Corte </a>
    <table id="tabla" class="table table-striped table-bordered">
         <thead>
             <tr>
@@ -67,8 +67,7 @@
                 <th>Matricula</th>
                 <th>Nombre del alumno</th>
                 <th>Numero de semana pagada</th>
-                <th>Inscripcion</th>
-                <th>Colegitura</th>
+                <th>Total</th>
                 <th>Fecha de pago</th>
                 <th>Responzable del cobro</th>
                 <?php if ($this->session->userdata('itm')['Rol'] == 2): ?>
@@ -82,30 +81,27 @@
             
             <tbody>
                 <?php foreach ($cortes as $key ): ?>
+                  <tr>
                     <?php if ($key['Eliminarpagos'] != 1): ?>
-                        
                         <td><?=$key['foliodepagos']?></td>
                         <td><?=$key['id_alumno']?></td>
                         <td><?=$key['nombre_alumno']?></td>
-                        
-                        <td><?=$key['ultimasemanadepago']?></td>
-                        <?php if ($key['incripcionpago']==null): ?>
-                            <td>pagado</td>
-                         <?php else: ?>
-                           <td> <?=$key['incripcionpago']?></td>
-                        <?php endif ?>
-                        <td><?=$key['colegiaturapago']?></td>
+                        <td><?php $colegiatura = $this->Cortesdeldia->colegiaturas($key['foliodepagos']);
+                                  foreach ($colegiatura as $value) {
+                                  echo $value['semanaspagadas']." ";
+                                  }?>
+                        </td>
+                        <td><?=$key['totalpago']?></td>
                         <td><?=$key['fechadepago']?></td>
                         <td><?=$key['NOMBRE_PERSONA']?></td>
-                        <td>
                           <?php if ($this->session->userdata('itm')['Rol'] == 2): ?>
-                            <button class="btn btn-danger" onclick="canselar(<?=$key['foliodepagos']?>)" id="canselar<?=$key['foliodepagos']?>">Canselar </button>
+                            <td>
+                              <button class="btn btn-danger" onclick="canselar(<?=$key['foliodepagos']?>)" id="canselar<?=$key['foliodepagos']?>">Canselar </button>
+                            </td>
                           <?php endif ?>
-                    <?php endif ?>
-                    <tr>
-                        </td>
-                    </tr>
                     
+                    <?php endif ?>
+                    </tr>
                 <?php endforeach ?>
             </tbody>
         <?php endif ?>
@@ -118,6 +114,7 @@
     <?php endif ?>
 </div>
 </section>	
+
 <script type="text/javascript">
     
     function canselar(argument) {

@@ -51,7 +51,16 @@
                            </a>
                       </li>
                       <?php if ($this->session->userdata('itm')['Rol'] == 2): ?>
-                      <li>
+                      
+                <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                        <span>
+                            Personal
+                        </span>
+                    </a>
+                    <div class="dropdown-menu">
+                    <li>
           		            <a href="<?=base_url(),'Login/Registrodeusuarios'?>">
                               <i class="fa fa-user-plus" aria-hidden="true"></i>
                                     <span>
@@ -67,6 +76,9 @@
                                     </span>
                             </a>
                       </li>
+                    </div>
+                </div>
+                      
                     <?php endif ?>
                       <li>
                           <a title="" href="<?php echo base_url('RegistroAlumnos') ?>">
