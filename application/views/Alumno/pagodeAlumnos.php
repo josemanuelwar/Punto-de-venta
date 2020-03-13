@@ -102,7 +102,7 @@
            	echo form_open(htmlspecialchars('RegistroAlumnos/pagarincricolegitura').'/'.base64_encode($alumno['id_alumno']), array('method' => 'POST'));
            	echo form_label("Incripcion");
            	echo form_input($input_Incripcion);
-           	echo form_label("Colegitura");
+           	echo form_label("Colegiatura");
            	echo form_input($input_Colegitura);
            	echo form_submit('submit', 'pagar','class=btn btn-default');
           	echo form_close();

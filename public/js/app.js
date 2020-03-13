@@ -3,30 +3,48 @@ var app = new Vue({
   data: {
     message: 'Registro de productos',
     productos:{
-    	nombre:'',
-    	cantidad:'',
-    	precio:'',
-      seleccion:''
+    	nombre:null,
+    	cantidad:null,
+    	precio:null,
+      seleccion:null
     },
      producto: [],
      ban:false,
      but:true,
-     ban1:false
+     ban1:false,
+     erros:[],
+     bandera:0,
      
 
   },///fin de data
   methods: {
   	  crearproducto: function(){
-       this.$http.post('http://localhost/Punto-de-venta/Productos/registraproductosvue/', this.productos).then(function(){
+          this.erros=[];
+         if(!this.productos.nombre){
+            this.erros.push("El nombre es requerido");
+            this.bandera=1;
+            console.log(this.erros);
+         }
+         if(!this.productos.cantidad){
+            this.erros.push("El Precio es requerido");
+            this.bandera=1;
+            console.log(this.erros);
+         }
+         if(!this.productos.Precio){
+            this.erros.push("EL cantidad es requerido");
+            this.bandera=1;
+            console.log(this.erros);
+         }
+         if(this.bandera != 1){
+            this.$http.post('http://localhost/Punto-de-venta/Productos/registraproductosvue/', this.productos).then(function(){
             this.productos.nombre = '';
             this.productos.cantidad = '';
             this.productos.precio = '';
             this.recuperarProducto();
-       
-         }, function(){
+            }, function(){
             alert('No se ha podido crear la tarea.');
-         
-      });
+         });
+   }
   	},
   	recuperarProducto: function(){
          this.$http.get('http://localhost/Punto-de-venta/Productos/recupearproductos').then(function(respuesta){

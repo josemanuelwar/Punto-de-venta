@@ -97,7 +97,48 @@ class Cortes extends CI_Controller {
 		}
 	}
 
-	public function historialajax(){
+	public function imprimir_corte($fecha=null,$numerodesemana=null)
+	{
+		if($fecha != 1){
+			$Corte=$this->Cortesdeldia->cortedia($fecha);
+			$Total=$this->Cortesdeldia->sumadeingresos($fecha);
+		}elseif($numerodesemana != null){
+			$Corte=$this->Cortesdeldia->cortenumerosemana($numerodesemana);
+        	$Total=$this->Cortesdeldia->sumadeingresosnumerodesemana($numerodesemana);
+		}
+		$nombre_impresora = "Post";
+        $connector = new WindowsPrintConnector($nombre_impresora);
+        $printer = new Printer($connector);
+        $printer->setJustification(Printer::JUSTIFY_CENTER);
+            /*imagen del la institucion*/
+            // try{
+            //     $logo = EscposImage::load("img/logo1.png", false);
+            //     $printer->bitImage($logo);
+            // }catch(Exception $e){/*No hacemos nada si hay error*/}
+        $printer->setJustification(Printer::JUSTIFY_CENTER);
+        $printer->text("\n"."Instituto Tecnico de Mexico" . "\n");
+        $printer->text("Direccion:" . "\n");
+        $printer->text("Boulevard carlos camacho espíritu" . "\n");
+        date_default_timezone_set("America/Mexico_City");
+        $printer->text(date("Y-m-d H:i:s") . "\n");
+        $printer->text("Corte \n");
+        $printer->text("-----------------------------" . "\n");
+        $printer->setJustification(Printer::JUSTIFY_LEFT);
+			foreach ($Corte as $value) {
+                $printer->text("Folio ".$value["foliodepagos"]."\n");
+                $printer->text("Matricula  ".$value["id_alumno"]."\n");
+                $printer->text("Colegiatura $".$value['colegiatura_alumno']."\n");
+                if($value["incripcion_alumno"]!=0){
+                    $printer->text("Incripcion".$value["incripcion_alumno"]."\n");
+				}
+			}
+            $printer->text("-----------------------------"."\n");
+            $printer->setJustification(Printer::JUSTIFY_RIGHT);
+            $printer->text("TOTAL:\n");
+            $printer->text("$".$Total[0]["SUM(totalpago)"]."\n");
+            $printer->feed(3);
+            $printer->cut();
+			$printer->close();
+		redirect('Cortes');
 	}
-
 }

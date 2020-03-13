@@ -59,7 +59,17 @@
             <?php endif ?>
                 <a href="<?= base_url('RegistroAlumnos/generarexelfecha/').$f.'/'.$n?>" class="btn btn-success"  >Exportar Exel por Fecha</a>
               <?php endif ?>
-              <a href="#" class="btn btn-success"> Imprimir Corte </a>
+              <?php if (isset($fecha)): ?>
+                  <?php $f=$fecha; ?>
+              <?php else: ?>
+                <?php $f=1; ?>
+            <?php endif ?>
+            <?php if (isset($numero)): ?>
+                  <?php $n=$numero; ?>
+                <?php else: ?>
+                  <?php $n="";?>
+            <?php endif ?>
+              <a href="<?= base_url('Cortes/imprimir_corte/').$f.'/'.$n?>" class="btn btn-success"> Imprimir Corte </a>
    <table id="tabla" class="table table-striped table-bordered">
         <thead>
             <tr>
@@ -69,7 +79,7 @@
                 <th>Numero de semana pagada</th>
                 <th>Total</th>
                 <th>Fecha de pago</th>
-                <th>Responzable del cobro</th>
+                <th>Responsable del cobro</th>
                 <?php if ($this->session->userdata('itm')['Rol'] == 2): ?>
                 <th>Acciones</th>
               <?php endif ?>

@@ -32,7 +32,7 @@
        			<th>Numero de semana pagadas</th>
        			<th>Total de pagaos</th>
        			 <th>Fecha de pago</th>
-                <th>Responzable del cobro</th>
+            <th>Responsable del cobro</th>
        		</thead>
        		<tbody id="tabla_resultados">
        			<?php if (isset($hitoria)): ?>
